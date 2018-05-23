@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{136BE8DC-A6F7-4AB3-9A5F-0817F16359E5}</ProjectGuid>
+    <ProjectGuid>{98756214-C11D-4F67-A5B1-568541EF3EA8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TCPquiz</RootNamespace>
-    <AssemblyName>TCPquiz</AssemblyName>
+    <RootNamespace>TCPquiz_Client</RootNamespace>
+    <AssemblyName>TCPquiz Client</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
