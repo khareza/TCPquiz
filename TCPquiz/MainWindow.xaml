@@ -6,8 +6,21 @@
         xmlns:local="clr-namespace:TCPquiz"
         mc:Ignorable="d"
         Icon="Images\favicon.png"
-        Title="Quiz Freaks" Height="720" Width="1280">
-    <Grid>
-        
-    </Grid>
+        Title="Quiz Freaks" Height="720" Width="1280" MinHeight="720" MinWidth="1280">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFDE7676"/>
+            <GradientStop Color="#FFDEBD2A" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Viewbox StretchDirection="Both" Stretch="Uniform">
+        <Grid Width="1340" Height="720">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDE7676"/>
+                    <GradientStop Color="#FFDEBD2A" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+    </Viewbox>
 </Window>
