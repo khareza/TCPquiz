@@ -1,0 +1,54 @@
+﻿<Window x:Class="TCPquiz_Client.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TCPquiz_Client"
+        mc:Ignorable="d"
+        Icon="Images\favicon.png"
+        Title="Quiz Login" Height="360" Width="640" MinHeight="360" MinWidth="640">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFDE7676"/>
+            <GradientStop Color="#FFDEBD2A" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Viewbox StretchDirection="Both" Stretch="Uniform">
+        <Grid Width="688" Height="360">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="63*"/>
+                <RowDefinition Height="37*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDE7676"/>
+                    <GradientStop Color="#FFDEBD2A" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <TextBox  Cursor="Arrow" x:Name="ServerIP" Height="52" TextWrapping="Wrap" Text="127:0:0:1" VerticalAlignment="Top" Margin="498,62,40,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
+            <TextBox  Cursor="Arrow" x:Name="UserName" Height="52" TextWrapping="Wrap" Text="Janusz" VerticalAlignment="Top" Margin="40,64,498,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
+            <Label x:Name="UserNameLabel" Content="Username:" VerticalAlignment="Top" Margin="40,10,498,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800" Grid.Row="1">
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
+                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+            <Label x:Name="ServerIPLabel" Content="Server IP" VerticalAlignment="Top" Margin="498,10,40,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800" Height="39" Grid.Row="1">
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
+                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+            <Button x:Name="Login" Content="Wejdź do gry" VerticalAlignment="Top" Margin="268,33,270,0" Grid.Row="1" FontSize="22" Height="52"  Style="{DynamicResource BlackButton}" Click="Login_Click"/>
+
+            <Label Content="© Czehar 2018" Height="58" Margin="265,6,267,10" VerticalAlignment="Center" Foreground="#FF3AA000" VerticalContentAlignment="Center" FontFamily="Transformers Movie" FontSize="20" HorizontalContentAlignment="Center" Grid.Row="2"/>
+            <Image Margin="40,0" Source="Images/logo_login.png" IsEnabled="False"/>
+        </Grid>
+    </Viewbox>
+</Window>
