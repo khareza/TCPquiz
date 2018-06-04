@@ -59,14 +59,15 @@
                     </LinearGradientBrush>
                 </Label.Background>
             </Label>
-            <Button x:Name="AnswA" Content="Odpowiedź A" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="257,217,0,0" Grid.Row="1" Height="78"  Style="{DynamicResource BlueButton}"/>
-            <Button x:Name="AnswB" Content="Odpowiedź B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="700,217,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}"/>
-            <Button x:Name="AnswC" Content="Odpowiedź C" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="257,330,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}"/>
-            <Button x:Name="AnswD" Content="Odpowiedź D" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="700,330,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}"/>
+            <Button x:Name="AnswA" Content="Odpowiedź A" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="257,217,0,0" Grid.Row="1" Height="78"  Style="{DynamicResource BlueButton}" Click="AnswA_Click"/>
+            <Button x:Name="AnswB" Content="Odpowiedź B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="700,217,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}" Click="AnswB_Click"/>
+            <Button x:Name="AnswC" Content="Odpowiedź C" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="257,330,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}" Click="AnswC_Click"/>
+            <Button x:Name="AnswD" Content="Odpowiedź D" HorizontalAlignment="Left" VerticalAlignment="Top" Width="385" Margin="700,330,0,0" Grid.Row="1" Height="78" Style="{DynamicResource  BlueButton}" Click="AnswD_Click"/>
 
 
             <Label Content="© Czehar 2018" Height="58" Margin="597,17,596,10" VerticalAlignment="Center" Foreground="#FF3AA000" VerticalContentAlignment="Center" FontFamily="Transformers Movie" FontSize="20" HorizontalContentAlignment="Center" Grid.Row="2"/>
             <Image Margin="128,21,125,10" Source="Images/logo_klient.png" IsEnabled="False" Grid.RowSpan="1"/>
+            <TextBox Name="CheckerClient" HorizontalAlignment="Left" Height="37" Margin="1002,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="137"/>
         </Grid>
     </Viewbox>
 </Window>
