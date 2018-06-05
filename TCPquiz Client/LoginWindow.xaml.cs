@@ -27,8 +27,17 @@ namespace TCPquiz_Client
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             MainWindow MainWindow = new MainWindow();
+            MainWindow.Name = UserName.Text;
             this.Close();
-            MainWindow.Show();
+            try
+            {
+                MainWindow?.Show();
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
     }
 }

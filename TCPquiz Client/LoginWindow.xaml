@@ -27,7 +27,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
 
-            <TextBox  Cursor="Arrow" x:Name="ServerIP" Height="52" TextWrapping="Wrap" Text="127:0:0:1" VerticalAlignment="Top" Margin="498,62,40,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
+           
             <TextBox  Cursor="Arrow" x:Name="UserName" Height="52" TextWrapping="Wrap" Text="Janusz" VerticalAlignment="Top" Margin="40,64,498,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
             <Label x:Name="UserNameLabel" Content="Username:" VerticalAlignment="Top" Margin="40,10,498,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800" Grid.Row="1">
                 <Label.Background>
@@ -37,14 +37,7 @@
                     </LinearGradientBrush>
                 </Label.Background>
             </Label>
-            <Label x:Name="ServerIPLabel" Content="Server IP" VerticalAlignment="Top" Margin="498,10,40,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800" Height="39" Grid.Row="1">
-                <Label.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
-                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
-                    </LinearGradientBrush>
-                </Label.Background>
-            </Label>
+            
             <Button x:Name="Login" Content="Wejdź do gry" VerticalAlignment="Top" Margin="268,33,270,0" Grid.Row="1" FontSize="22" Height="52"  Style="{DynamicResource BlackButton}" Click="Login_Click"/>
 
             <Label Content="© Czehar 2018" Height="58" Margin="265,6,267,10" VerticalAlignment="Center" Foreground="#FF3AA000" VerticalContentAlignment="Center" FontFamily="Transformers Movie" FontSize="20" HorizontalContentAlignment="Center" Grid.Row="2"/>

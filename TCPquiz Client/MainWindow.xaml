@@ -27,7 +27,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <TextBox IsReadOnly="True" Cursor="Arrow" x:Name="Question" Height="179" TextWrapping="Wrap" Text="Czy Kamil w końcu weźmie się do roboty ?" VerticalAlignment="Top" Margin="257,10,255,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
-            <Label x:Name="Time" Content="TIMER" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
+            <Label x:Name="Points" Content="Points" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFF4F6FF" Offset="0"/>
@@ -35,7 +35,7 @@
                     </LinearGradientBrush>
                 </Label.Background>
             </Label>
-            <Label x:Name="TimerValue" Content="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="1119,54,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="White">
+            <Label x:Name="PointCounter" Content="0/20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="1119,54,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="White">
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFF4F6FF" Offset="0"/>
@@ -67,7 +67,7 @@
 
             <Label Content="© Czehar 2018" Height="58" Margin="597,17,596,10" VerticalAlignment="Center" Foreground="#FF3AA000" VerticalContentAlignment="Center" FontFamily="Transformers Movie" FontSize="20" HorizontalContentAlignment="Center" Grid.Row="2"/>
             <Image Margin="128,21,125,10" Source="Images/logo_klient.png" IsEnabled="False" Grid.RowSpan="1"/>
-            <TextBox Name="CheckerClient" HorizontalAlignment="Left" Height="37" Margin="1002,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="137"/>
+            <TextBlock Name="CheckerClient" HorizontalAlignment="Left" Height="37" Margin="607,421,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Grid.RowSpan="2" TextAlignment="Center" FontSize="30"/>
         </Grid>
     </Viewbox>
 </Window>
