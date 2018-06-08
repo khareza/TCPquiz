@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace TCPquiz_Client
 {
@@ -26,16 +27,35 @@ namespace TCPquiz_Client
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow MainWindow = new MainWindow();
-            MainWindow.Name = UserName.Text;
-            this.Close();
-            try
+            string ipaddr = @"^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$";
+
+            Match match = Regex.Match(IPAddr.Text, ipaddr);
+
+            if (String.IsNullOrWhiteSpace(UserName.Text))
             {
-                MainWindow?.Show();
+                MessageBox.Show("Nazwa gracza nie może być pusta");
             }
-            catch (Exception)
+            else
             {
 
+                 if (match.Success)
+                 {
+                     MainWindow MainWindow = new MainWindow();
+                     MainWindow.Name = UserName.Text;
+                     this.Close();
+                     try
+                     {
+                         MainWindow?.Show();
+                     }
+                     catch (Exception)
+                     {
+
+                     }
+                 }
+                 else
+                 {
+                     MessageBox.Show("Błędny adres IP");
+                 }
             }
 
         }

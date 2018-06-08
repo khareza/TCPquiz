@@ -28,19 +28,25 @@
                 </LinearGradientBrush>
             </Grid.Background>
 
+            <TextBox  Cursor="Arrow" x:Name="IPAddr" Height="58" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="232,113,501,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold" IsReadOnly="True" IsEnabled="False"/>
+            <Label x:Name="IPAddrLabel" Content="Server IP:" VerticalAlignment="Top" Margin="90,113,681,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800" Grid.Row="1" RenderTransformOrigin="1.1,1.673" Height="58">
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
+                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+
             <Label x:Name="Status" Content="Server status" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="128,23,125,98" Width="647" Grid.Row="1" Height="60" FontWeight="Bold" FontFamily="Open Sans Semibold" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White"/>
-            <Button x:Name="StartServer" Content="Start Server" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="496,113,0,0" Grid.Row="1" Height="58" Style="{DynamicResource BlackButton}" Click="StartServer_Click"/>
-            <Button x:Name="StopServer" Content="Stop Server" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="646,113,0,0" Grid.Row="1" Height="58" Style="{DynamicResource BlackButton}" Click="StopServer_Click"/>
+            <Button x:Name="StartServer" Content="Start Server" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="528,113,0,0" Grid.Row="1" Height="58" Style="{DynamicResource BlackButton}" Click="StartServer_Click"/>
+            <Button x:Name="StopServer" Content="Stop Server" VerticalAlignment="Top" Margin="681,113,90,0" Grid.Row="1" Height="58" Style="{DynamicResource BlackButton}" Click="StopServer_Click"/>
 
 
             <Label Content="© Czehar 2018" Height="58" Margin="377,6,376,10" Grid.Row="2" VerticalAlignment="Center" Foreground="#FF3AA000" VerticalContentAlignment="Center" FontFamily="Transformers Movie" FontSize="20" HorizontalContentAlignment="Center"/>
             <Image  Margin="128,21,125,10" Source="Images\logo_serwer.png" IsEnabled="False" Grid.RowSpan="1"/>
             <TextBox Visibility="Collapsed" Name="Checker" HorizontalAlignment="Left" Height="164" TextWrapping="Wrap" VerticalAlignment="Top" Width="890"/>
-            <Label Content="Label" HorizontalAlignment="Left" Margin="42,95,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,133,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="65,133,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="115,133,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="175,133,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+
         </Grid>
     </Viewbox>
 </Window>

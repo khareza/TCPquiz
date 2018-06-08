@@ -26,8 +26,8 @@
                     <GradientStop Color="#FFDEBD2A" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <TextBox IsReadOnly="True" Cursor="Arrow" x:Name="Question" Height="179" TextWrapping="Wrap" Text="Czy Kamil w końcu weźmie się do roboty ?" VerticalAlignment="Top" Margin="257,10,255,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
-            <Label x:Name="Points" Content="Points" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
+            <TextBox IsReadOnly="True" Cursor="Arrow" x:Name="Question" Height="179" TextWrapping="Wrap" Text="Treść pytania" VerticalAlignment="Top" Margin="257,10,255,0" Grid.Row="1" Style="{DynamicResource QNTextBox}" FontWeight="Bold"/>
+            <Label x:Name="Points" Content="POINTS" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="211" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFF4F6FF" Offset="0"/>

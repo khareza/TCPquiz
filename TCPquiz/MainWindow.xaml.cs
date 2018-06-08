@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace TCPquiz
 {
@@ -59,18 +60,18 @@ namespace TCPquiz
 
         private void StartServer_Click(object sender, RoutedEventArgs e)
         {
-            StartServer.IsEnabled = false;
-            StopServer.IsEnabled = true;
-            SetupServer();
-            var rnd = new Random();
-            RandomNumbers = Enumerable.Range(0, 39).OrderBy(x => rnd.Next()).Take(20).ToList();//randomowe 20 liczb(pytan) z przedzialu 1-40
+                StartServer.IsEnabled = false;
+                StopServer.IsEnabled = true;
+                SetupServer();
+                var rnd = new Random();
+                RandomNumbers = Enumerable.Range(0, 39).OrderBy(x => rnd.Next()).Take(20).ToList();//randomowe 20 liczb(pytan) z przedzialu 1-40
 
-            //mozna tez tak
-            //HashSet<int> numbers = new HashSet<int>();
-            //while (numbers.Count < 20)
-            //{
-            //    numbers.Add(rnd.Next(0, 39));
-            //}
+                //mozna tez tak
+                //HashSet<int> numbers = new HashSet<int>();
+                //while (numbers.Count < 20)
+                //{
+                //    numbers.Add(rnd.Next(0, 39));
+                //}
         }
 
         private void StopServer_Click(object sender, RoutedEventArgs e)
@@ -87,6 +88,7 @@ namespace TCPquiz
 
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPAddress hostIPAddress1 = new IPAddress(new byte[] {10,10,60,163 }); //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
+            IPAddr.Text = hostIPAddress1.ToString();
             serverSocket.Bind(new IPEndPoint(hostIPAddress1, PORT));
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallback, null);
@@ -94,8 +96,8 @@ namespace TCPquiz
             Status.Content = "Server is active";
             //Status.Content = hostIPAddress1.ToString();
             //Console.WriteLine("Server setup complete");
-
         }
+
         private void CloseAllSockets()
         {
             foreach (Socket socket in clientSockets)
