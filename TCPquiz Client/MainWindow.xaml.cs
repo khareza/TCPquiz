@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +34,7 @@ namespace TCPquiz_Client
         public string Name = "";
         BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         private static readonly Socket ClientSocket = new Socket
-      (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 100;
         public MainWindow()
@@ -50,18 +51,23 @@ namespace TCPquiz_Client
                 backgroundWorker1.WorkerReportsProgress = true;
             }
 
-            // RequestLoop();
-            //Exit();
+           
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            tempStrings = ReceiveResponse().Split(',');
-            while (tempStrings.Length <= 0)
+            string fsdfsdf = null;
+            tempStrings = new string[1];
+            while (tempStrings.Length != 2)
             {
-                tempStrings = ReceiveResponse().Split(',');
-               
+                SendString("request");
+                fsdfsdf = ReceiveResponse();
+                tempStrings = fsdfsdf.Split(',');
+                Thread.Sleep(500);
+                
             }
+            
+
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -102,9 +108,10 @@ namespace TCPquiz_Client
                 {
                     attempts++;
                     Question.Text+= "Connection attempt " + attempts + "\r\n";
-                    //Console.WriteLine("Connection attempt " + attempts);
-                    // Change IPAddress.Loopback to a remote IP to connect to a remote host.
-                    ClientSocket.Connect(IPAddress.Loopback, PORT);
+                //Console.WriteLine("Connection attempt " + attempts);
+                // Change IPAddress.Loopback to a remote IP to connect to a remote host.
+                IPAddress hostIPAddress1 = new IPAddress(new byte[] { 10, 10, 60, 163 });// (Dns.GetHostEntry("10.10.60.163")).AddressList[0];
+                ClientSocket.Connect(hostIPAddress1, PORT);
                 }
                 catch (SocketException)
                 {
@@ -272,5 +279,7 @@ namespace TCPquiz_Client
             NumberOfQuestion.Content = ClientQuestionNumber + "/20";
             CheckStop();
         }
+
+
     }
 }

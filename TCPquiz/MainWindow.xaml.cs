@@ -59,6 +59,8 @@ namespace TCPquiz
 
         private void StartServer_Click(object sender, RoutedEventArgs e)
         {
+            StartServer.IsEnabled = false;
+            StopServer.IsEnabled = true;
             SetupServer();
             var rnd = new Random();
             RandomNumbers = Enumerable.Range(0, 39).OrderBy(x => rnd.Next()).Take(20).ToList();//randomowe 20 liczb(pytan) z przedzialu 1-40
@@ -74,21 +76,25 @@ namespace TCPquiz
         private void StopServer_Click(object sender, RoutedEventArgs e)
         {
             CloseAllSockets();
+            StartServer.IsEnabled = true;
+            StopServer.IsEnabled = false;
         }
 
         private void SetupServer()
         {
-            Checker.Text += "Setting up server..." + "\r\n";
+            
             // Console.WriteLine("Setting up server...");
 
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(new IPEndPoint(IPAddress.Any, PORT));
+            IPAddress hostIPAddress1 = new IPAddress(new byte[] {10,10,60,163 }); //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
+            serverSocket.Bind(new IPEndPoint(hostIPAddress1, PORT));
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallback, null);
             Status.Foreground = Brushes.Green;
             Status.Content = "Server is active";
+            //Status.Content = hostIPAddress1.ToString();
             //Console.WriteLine("Server setup complete");
-            Checker.Text += "Server setup complete" + "\r\n";
+
         }
         private void CloseAllSockets()
         {
@@ -132,7 +138,7 @@ namespace TCPquiz
             {
                 received = current.EndReceive(AR);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 //Checker.Text += "Client forcefully disconnected" + "\r\n";
                 //Console.WriteLine("Client forcefully disconnected");
@@ -169,14 +175,27 @@ namespace TCPquiz
             else
             {
                 string[] tempString = text.Split(' ');
-                PlayersAndPoints.Add(tempString[0], tempString[1]);
-                AmountOfPlayers++;
-                if (int.Parse(tempString[2]) == 20 && AmountOfPlayers == clientSockets.Count)
-                {
-                    var ordered = PlayersAndPoints.OrderBy(x => x.Value).ToList();
-                    byte[] data = Encoding.ASCII.GetBytes(ordered[0].ToString());
-                    current.Send(data);
+                if (tempString.Length==3)
+                {                    
+                    PlayersAndPoints.Add(tempString[0], tempString[1]);
+                    AmountOfPlayers++;
                 }
+                if (text.ToLower().Equals("request"))
+                {
+                    if (AmountOfPlayers == clientSockets.Count)
+                    {
+                        var ordered = PlayersAndPoints.OrderByDescending(x => x.Value).ToList();
+                        byte[] data = Encoding.ASCII.GetBytes(ordered[0].ToString());
+                        current.Send(data);
+                    }
+                    else
+                    {
+                        byte[] data = Encoding.ASCII.GetBytes("error");
+                        current.Send(data);
+                    }
+                }
+
+
 
             }
 
