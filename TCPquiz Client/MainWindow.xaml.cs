@@ -32,14 +32,17 @@ namespace TCPquiz_Client
         private int PointsCounter = 0;
         string[] tempStrings;
         public string Name = "";
+        public string IPAddress = "";
         BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         private static readonly Socket ClientSocket = new Socket
         (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private const int PORT = 100;
-        public MainWindow()
+        public MainWindow(string IPAddress)
         {
             InitializeComponent();
+            this.IPAddress = IPAddress;
+
             if (ConnectToServer())
             {
                 SendString(ClientQuestionNumber.ToString());
@@ -101,17 +104,15 @@ namespace TCPquiz_Client
 
         private bool ConnectToServer()
         {
-            int attempts = 0;
-            bool IsConnected = true;
+            bool IsConnected = false;
 
+             
+                string[] IPAddressArray = IPAddress.Split('.');
+                IPAddress hostIPAddress1 = new IPAddress(new byte[] { byte.Parse(IPAddressArray[0]), byte.Parse(IPAddressArray[1]), byte.Parse(IPAddressArray[2]), byte.Parse(IPAddressArray[3]) });
                 try
                 {
-                    attempts++;
-                    Question.Text+= "Connection attempt " + attempts + "\r\n";
-                //Console.WriteLine("Connection attempt " + attempts);
-                // Change IPAddress.Loopback to a remote IP to connect to a remote host.
-                IPAddress hostIPAddress1 = new IPAddress(new byte[] { 10, 10, 60, 163 });// (Dns.GetHostEntry("10.10.60.163")).AddressList[0];
                 ClientSocket.Connect(hostIPAddress1, PORT);
+                IsConnected = true;
                 }
                 catch (SocketException)
                 {

@@ -40,8 +40,9 @@ namespace TCPquiz_Client
 
                  if (match.Success)
                  {
-                     MainWindow MainWindow = new MainWindow();
+                     MainWindow MainWindow = new MainWindow(IPAddr.Text);
                      MainWindow.Name = UserName.Text;
+                     //MainWindow.IPAddress = IPAddr.Text;
                      this.Close();
                      try
                      {

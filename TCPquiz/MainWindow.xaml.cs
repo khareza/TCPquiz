@@ -87,7 +87,7 @@ namespace TCPquiz
             // Console.WriteLine("Setting up server...");
 
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress hostIPAddress1 = new IPAddress(new byte[] {10,10,60,163 }); //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
+            IPAddress hostIPAddress1 = new IPAddress(new byte[] {192,168,56,1 }); //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
             IPAddr.Text = hostIPAddress1.ToString();
             serverSocket.Bind(new IPEndPoint(hostIPAddress1, PORT));
             serverSocket.Listen(0);
