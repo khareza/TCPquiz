@@ -20,9 +20,6 @@ using System.Text.RegularExpressions;
 namespace TCPquiz
 {
 
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private Socket serverSocket;
@@ -63,8 +60,9 @@ namespace TCPquiz
                 StartServer.IsEnabled = false;
                 StopServer.IsEnabled = true;
                 SetupServer();
+                //randomowe 20 liczb(pytan) z przedzialu 1-40
                 var rnd = new Random();
-                RandomNumbers = Enumerable.Range(0, 39).OrderBy(x => rnd.Next()).Take(20).ToList();//randomowe 20 liczb(pytan) z przedzialu 1-40
+                RandomNumbers = Enumerable.Range(0, 39).OrderBy(x => rnd.Next()).Take(20).ToList();
 
                 //mozna tez tak
                 //HashSet<int> numbers = new HashSet<int>();
@@ -82,20 +80,16 @@ namespace TCPquiz
         }
 
         private void SetupServer()
-        {
-            
-            // Console.WriteLine("Setting up server...");
+        {            
 
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPAddress hostIPAddress1 = new IPAddress(new byte[] {192,168,56,1 }); //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
-            IPAddr.Text = hostIPAddress1.ToString();
+            IPAddress hostIPAddress1 = Dns.GetHostByName(Dns.GetHostName()).AddressList[0]; //(Dns.GetHostEntry("10.10.60.163")).AddressList[0];
             serverSocket.Bind(new IPEndPoint(hostIPAddress1, PORT));
+            IPAddr.Text = hostIPAddress1.ToString();
             serverSocket.Listen(0);
             serverSocket.BeginAccept(AcceptCallback, null);
             Status.Foreground = Brushes.Green;
             Status.Content = "Server is active";
-            //Status.Content = hostIPAddress1.ToString();
-            //Console.WriteLine("Server setup complete");
         }
 
         private void CloseAllSockets()
@@ -117,16 +111,14 @@ namespace TCPquiz
             {
                 socket = serverSocket.EndAccept(AR);
             }
-            catch (ObjectDisposedException) // I cannot seem to avoid this (on exit when properly closing sockets)
+            catch (ObjectDisposedException) 
             {
                 return;
             }
 
             clientSockets.Add(socket);
             socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, socket);       
-            //Checker.Text += "Client connected, waiting for request..." + "\r\n";
-            //Console.WriteLine("Client connected, waiting for request...");
-            serverSocket.BeginAccept(AcceptCallback, null);
+            serverSocket.BeginAccept(AcceptCallback, socket);
         }
 
         
@@ -142,9 +134,6 @@ namespace TCPquiz
             }
             catch (Exception)
             {
-                //Checker.Text += "Client forcefully disconnected" + "\r\n";
-                //Console.WriteLine("Client forcefully disconnected");
-                // Don't shutdown because the socket may be disposed and its disconnected anyway.
                 current.Close();
                 clientSockets.Remove(current);
                 return;
@@ -153,8 +142,7 @@ namespace TCPquiz
             byte[] recBuf = new byte[received];
             Array.Copy(buffer, recBuf, received);
             string text = Encoding.ASCII.GetString(recBuf);
-            //Checker.Text += "Received Text: " + text + "\r\n";
-            //Console.WriteLine("Received Text: " + text);
+
             LoadAnswer();
             if (int.TryParse(text, out QuestionNumber))
             {
@@ -164,7 +152,7 @@ namespace TCPquiz
             }
             else if (text.ToLower().Equals(CorrectAnswer.ToLower()) && text.Length == 1)
             {
-                //Console.WriteLine("Text is a get time request");
+
                 byte[] data = Encoding.ASCII.GetBytes("Good");
                 current.Send(data);
 

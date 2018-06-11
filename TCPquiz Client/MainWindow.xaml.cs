@@ -21,35 +21,37 @@ using System.Windows.Shapes;
 
 namespace TCPquiz_Client
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private const int PORT = 100;
+        private static readonly Socket ClientSocket = new Socket
+        (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         private int ClientQuestionNumber = 0;
         private int QuestionNumber = 0;
         private int PointsCounter = 0;
-        string[] tempStrings;
-        public string Name = "";
-        public string IPAddress = "";
-        BackgroundWorker backgroundWorker1 = new BackgroundWorker();
-        private static readonly Socket ClientSocket = new Socket
-        (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-        private const int PORT = 100;
-        public MainWindow(string IPAddress)
+        string[] tempStrings;
+
+        public string Name = "";
+        public string IPAddresss = "";
+
+        BackgroundWorker backgroundWorker1 = new BackgroundWorker();
+
+       
+        public MainWindow(string IPAddress,string Name)
         {
             InitializeComponent();
-            this.IPAddress = IPAddress;
-
+            this.IPAddresss = IPAddress;
+            this.Name = Name;
             if (ConnectToServer())
             {
+                NickNameLabel.Content = Name;
                 SendString(ClientQuestionNumber.ToString());
                 ReceiveResponse();
                 LoadQuestion();
+
                 backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-                backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
                 backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
                 backgroundWorker1.WorkerReportsProgress = true;
             }
@@ -59,23 +61,17 @@ namespace TCPquiz_Client
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            string fsdfsdf = null;
+            string RequestString = null;
             tempStrings = new string[1];
             while (tempStrings.Length != 2)
             {
                 SendString("request");
-                fsdfsdf = ReceiveResponse();
-                tempStrings = fsdfsdf.Split(',');
-                Thread.Sleep(500);
-                
-            }
-            
-
+                RequestString = ReceiveResponse();
+                tempStrings = RequestString.Split(',');
+                Thread.Sleep(300);               
+            }          
         }
 
-        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-        }
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             Question.Text = "The winner is: " + tempStrings[0] + " with points: " + tempStrings[1] + "\r\n";
@@ -107,12 +103,14 @@ namespace TCPquiz_Client
             bool IsConnected = false;
 
              
-                string[] IPAddressArray = IPAddress.Split('.');
-                IPAddress hostIPAddress1 = new IPAddress(new byte[] { byte.Parse(IPAddressArray[0]), byte.Parse(IPAddressArray[1]), byte.Parse(IPAddressArray[2]), byte.Parse(IPAddressArray[3]) });
+                //string[] IPAddressArray = IPAddresss.Split('.');
+                //IPAddress hostIPAddress1 = new IPAddress(new byte[] { byte.Parse(IPAddressArray[0]), byte.Parse(IPAddressArray[1]), byte.Parse(IPAddressArray[2]), byte.Parse(IPAddressArray[3]) });
                 try
                 {
-                ClientSocket.Connect(hostIPAddress1, PORT);
+                ClientSocket.Connect(Dns.GetHostByName(Dns.GetHostName()).AddressList[0], PORT);
+                
                 IsConnected = true;
+
                 }
                 catch (SocketException)
                 {
@@ -130,43 +128,20 @@ namespace TCPquiz_Client
 
         private void RequestLoop()
         {
-            Question.Text += @"<Type ""exit"" to properly disconnect client>" + "\r\n";
-            //Console.WriteLine(@"<Type ""exit"" to properly disconnect client>");
-
             while (true)
             {
-                //SendRequest();
                 ReceiveResponse();
             }
         }
 
-        /// <summary>
-        /// Close socket and exit program.
-        /// </summary>
-        private void Exit()
-        {
-            SendString("exit"); // Tell the server we are exiting
-            ClientSocket.Shutdown(SocketShutdown.Both);
-            ClientSocket.Close();
-            Environment.Exit(0);
-        }
 
         private void SendRequest()
         {
             Question.Text += "Send a request: " + "\r\n";
-            //Console.Write("Send a request: ");
             string request = "get date";
             SendString(request);
-
-            if (request.ToLower() == "exit")
-            {
-                Exit();
-            }
         }
 
-        /// <summary>
-        /// Sends a string to the server with ASCII encoding.
-        /// </summary>
         private void SendString(string text)
         {
             byte[] buffer = Encoding.ASCII.GetBytes(text);
@@ -192,7 +167,6 @@ namespace TCPquiz_Client
                 result = tempString;
             }
             return result;
-            //Console.WriteLine(text);
         }
 
         private void CheckStop()
@@ -233,7 +207,6 @@ namespace TCPquiz_Client
             
         }
 
-        //pozniej przeniose te przyciski do jednej metody
         private void AnswA_Click(object sender, RoutedEventArgs e)
         {
 

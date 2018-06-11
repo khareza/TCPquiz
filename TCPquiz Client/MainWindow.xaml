@@ -43,6 +43,29 @@
                     </LinearGradientBrush>
                 </Label.Background>
             </Label>
+            <Label Content="NICKNAME" HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" Margin="0,100,10,0" Width="211"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                   FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
+                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+            <Label x:Name="NickNameLabel" Content=" " HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" Margin="1119,146,10,0" Width="211"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                   FontSize="22" FontWeight="Bold" Foreground="White">
+                <Label.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF4F6FF" Offset="0"/>
+                        <GradientStop Color="#FF4A5FC1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+
             <Label x:Name="QuestionLabel" Content="QUESTION" VerticalAlignment="Top" Margin="10,10,1119,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="#FFFFE800">
                 <Label.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

@@ -15,9 +15,7 @@ using System.Text.RegularExpressions;
 
 namespace TCPquiz_Client
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
+
     public partial class LoginWindow : Window
     {
         public LoginWindow()
@@ -40,9 +38,7 @@ namespace TCPquiz_Client
 
                  if (match.Success)
                  {
-                     MainWindow MainWindow = new MainWindow(IPAddr.Text);
-                     MainWindow.Name = UserName.Text;
-                     //MainWindow.IPAddress = IPAddr.Text;
+                     MainWindow MainWindow = new MainWindow(IPAddr.Text, UserName.Text);
                      this.Close();
                      try
                      {
