@@ -79,21 +79,22 @@ namespace TCPquiz_Client
 
         private void LoadQuestion()
         {
+            string PathToQuestions = @"..\..\ClientQuestions\quest.txt";
             if (QuestionNumber!=0)
             {
-                Question.Text = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber).Take(1).First() + "\r\n";
-                AnswA.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 1).Take(1).First() + "\r\n";
-                AnswB.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 2).Take(1).First() + "\r\n";
-                AnswC.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 3).Take(1).First() + "\r\n";
-                AnswD.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 4).Take(1).First() + "\r\n";
-            }                                    
-            else                                 
-            {                                    
-                Question.Text = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber).Take(1).First() + "\r\n";
-                AnswA.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 1).Take(1).First() + "\r\n";
-                AnswB.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 2).Take(1).First() + "\r\n";
-                AnswC.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 3).Take(1).First() + "\r\n";
-                AnswD.Content = File.ReadLines(@"quest.txt", Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 4).Take(1).First() + "\r\n";
+                Question.Text = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber).Take(1).First() + "\r\n";
+                AnswA.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 1).Take(1).First() + "\r\n";
+                AnswB.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 2).Take(1).First() + "\r\n";
+                AnswC.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 3).Take(1).First() + "\r\n";
+                AnswD.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber * 5 + QuestionNumber + 4).Take(1).First() + "\r\n";
+            }                                  
+            else                               
+            {                                  
+                Question.Text = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber).Take(1).First() + "\r\n";
+                AnswA.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 1).Take(1).First() + "\r\n";
+                AnswB.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 2).Take(1).First() + "\r\n";
+                AnswC.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 3).Take(1).First() + "\r\n";
+                AnswD.Content = File.ReadLines(PathToQuestions, Encoding.GetEncoding("Windows-1250")).Skip(QuestionNumber + 4).Take(1).First() + "\r\n";
             }
             ClientQuestionNumber++;
         }

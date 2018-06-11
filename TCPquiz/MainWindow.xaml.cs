@@ -45,11 +45,11 @@ namespace TCPquiz
         {
             if (RandomNumbers[QuestionNumber] != 0)
             {
-                CorrectAnswer = File.ReadLines(@"quest.txt").Skip(RandomNumbers[QuestionNumber] * 5 + RandomNumbers[QuestionNumber] + 5).Take(1).First();
+                CorrectAnswer = File.ReadLines(@"..\..\ServerQuestions\quest.txt").Skip(RandomNumbers[QuestionNumber] * 5 + RandomNumbers[QuestionNumber] + 5).Take(1).First();
             }
             else
             {
-                CorrectAnswer = File.ReadLines(@"quest.txt").Skip(RandomNumbers[QuestionNumber]).Take(1).First();
+                CorrectAnswer = File.ReadLines(@"..\..\ServerQuestions\quest.txt").Skip(RandomNumbers[QuestionNumber]).Take(1).First();
             }
             
 
